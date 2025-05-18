@@ -1,0 +1,15 @@
+<h2>Ваш кошик</h2>
+<ul>
+  {% for item in items %}
+    <li>{{ item.game.title }} — {{ item.quantity }} шт.</li>
+  {% endfor %}
+</ul>
+{% if items %}
+  <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <button type="submit">Оформити замовлення</button>
+  </form>
+{% else %}
+  <p>Кошик порожній.</p>
+{% endif %}
+<a href="{% url 'game_list' %}">Назад до ігор</a>

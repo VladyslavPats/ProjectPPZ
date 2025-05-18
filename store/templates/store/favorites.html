@@ -1,0 +1,28 @@
+<h2>Улюблені ігри</h2>
+<ul>
+  {% for fav in favorites %}
+    <li>
+      {{ fav.game.title }}
+      <form method="post" action="{% url 'remove_from_favorites' fav.game.id %}">
+        {% csrf_token %}
+        <button type="submit">Видалити</button>
+      </form>
+    </li>
+  {% empty %}
+    <li>Список улюблених порожній.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'game_list' %}">Назад до ігор</a>
+<h2>Обрані ігри</h2>
+<ul>
+  {% for fav in favorites %}
+    <li>
+      {{ fav.game.title }}
+      <form method="post" action="{% url 'remove_from_favorites' fav.game.id %}">
+        {% csrf_token %}
+        <button type="submit">Видалити</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'game_list' %}">Назад до ігор</a>

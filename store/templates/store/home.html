@@ -1,0 +1,14 @@
+<h1>Інтернет-магазин настільних ігор</h1>
+{% if user.is_authenticated %}
+  <p>Вітаємо, {{ user.username }}!</p>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Вийти</button>
+  </form>
+{% else %}
+  <a href="{% url 'login' %}">Увійти</a> |
+  <a href="{% url 'register' %}">Зареєструватися</a>
+{% endif %}
+{% if user.is_staff %}
+  <a href="/admin/">Адмін-панель</a>
+{% endif %}

@@ -1,0 +1,27 @@
+<h2>{{ game.title }}</h2>
+<p>{{ game.description }}</p>
+<p>Ціна: {{ game.price }} грн</p>
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'add_to_cart' game.id %}">
+    {% csrf_token %}
+    <button type="submit">Додати до кошика</button>
+  </form>
+{% else %}
+  <p><a href="{% url 'login' %}">Увійдіть</a>, щоб купити</p>
+{% endif %}
+<a href="{% url 'game_list' %}">Назад до списку</a>
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'add_to_cart' game.id %}">
+    {% csrf_token %}
+    <button type="submit">Додати до кошика</button>
+  </form>
+
+  <form method="post" action="{% url 'add_to_favorites' game.id %}">
+    {% csrf_token %}
+    <button type="submit">Додати до улюбленого</button>
+  </form>
+{% endif %}
+<form method="post" action="{% url 'add_to_favorites' game.id %}">
+  {% csrf_token %}
+  <button type="submit">Додати в обране</button>
+</form>

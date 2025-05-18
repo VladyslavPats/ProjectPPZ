@@ -1,0 +1,15 @@
+<h2>Ваші замовлення</h2>
+<ul>
+  {% for order in orders %}
+    <li>
+      Замовлення №{{ order.id }} – Статус: {{ order.status }} <br>
+      Ігри:
+      <ul>
+        {% for game in order.games.all %}
+          <li>{{ game.title }}</li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'game_list' %}">Повернутись до ігор</a>
